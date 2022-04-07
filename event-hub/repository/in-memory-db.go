@@ -57,8 +57,9 @@ func GetUser(id string) (User, error) {
 	return user, nil
 }
 
-func GetAllUsers() []User {
-	result := make([]User, len(userDatabase))
+// GetAllUsers returns all users in the system
+func GetAllUsers() []User { /**/
+	result := make([]User, 0, len(userDatabase))
 	for _, value := range userDatabase {
 		result = append(result, value)
 	}

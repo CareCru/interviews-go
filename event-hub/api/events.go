@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/CareCru/interviews-go/event-hub/repository"
+	"github.com/CareCru/interviews-go/event-hub/service"
 	"github.com/gorilla/mux"
 	"net/http"
 )
@@ -15,6 +15,6 @@ func getEventsForUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	events := repository.GetEventsForUser(userID)
+	events := service.GetEventsForUser(userID)
 	respondWithJSON(w, http.StatusOK, events)
 }

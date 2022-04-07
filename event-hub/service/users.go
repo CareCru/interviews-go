@@ -7,3 +7,6 @@ import (
 func GetUser(id string) (repository.User, error) {
 	return repository.GetUser(id)
 }
+func GetAllUsers() []repository.User {
+	return repository.GetAllUsers()
+}

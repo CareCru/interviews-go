@@ -9,7 +9,8 @@ import (
 )
 
 func getAllUsers(w http.ResponseWriter, r *http.Request) {
-	respondWithJSON(w, http.StatusOK, service.GetAllUsers())
+	users := service.GetAllUsers()
+	respondWithJSON(w, http.StatusOK, users)
 }
 
 func getUser(w http.ResponseWriter, r *http.Request) {
