@@ -1,6 +1,8 @@
 package service
 
-import "../repository"
+import (
+	"github.com/CareCru/interviews-go/event-hub/repository"
+)
 
 func GetUser(id string) (repository.User, error) {
 	return repository.GetUser(id)

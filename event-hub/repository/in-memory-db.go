@@ -67,3 +67,11 @@ func GetEventsForUser(userID string) []Event {
 	}
 	return result
 }
+
+func CreateUser(user User) {
+	userDatabase[string(len(userDatabase))] = user
+}
+
+func CreateEvent(event Event) {
+	eventDatabase[string(len(eventDatabase))] = event
+}

@@ -1,12 +1,15 @@
 package main
 
 import (
-	"github.com/interviews-go/event-hub/api"
+	"fmt"
+	"github.com/CareCru/interviews-go/event-hub/api"
 	"net/http"
 )
 
 func main() {
 	// Start Server on port 8999
+	port := ":8999"
 	router := api.Configure()
-	http.ListenAndServe(":8999", router)
+	fmt.Printf("Running server on port %s....", port)
+	http.ListenAndServe(port, router)
 }

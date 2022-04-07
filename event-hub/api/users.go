@@ -1,8 +1,9 @@
 package api
 
 import (
-	"../service"
 	"encoding/json"
+	"github.com/CareCru/interviews-go/event-hub/repository"
+	"github.com/CareCru/interviews-go/event-hub/service"
 	"github.com/gorilla/mux"
 	"net/http"
 )
@@ -12,19 +13,24 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 
 	userID, found := params["userID"]
 	if !found {
-		w.WriteHeader(http.StatusNotFound)
+		respondWithError(w, http.StatusNotFound, "User ID not found in params")
+		return
 	}
 
 	user, err := service.GetUser(userID)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		respondWithError(w, http.StatusNotFound, "User Not Found")
+		return
 	}
 
-	jsonResponse, jsonError := json.Marshal(user)
-	if jsonError != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-	}
+	respondWithJSON(w, http.StatusOK, user)
+}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jsonResponse)
+func createUser(w http.ResponseWriter, r *http.Request) {
+	var user repository.User
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&user); err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		return
+	}
 }
