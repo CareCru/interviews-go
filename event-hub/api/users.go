@@ -8,6 +8,10 @@ import (
 	"net/http"
 )
 
+func getAllUsers(w http.ResponseWriter, r *http.Request) {
+	respondWithJSON(w, http.StatusOK, service.GetAllUsers())
+}
+
 func getUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
@@ -33,4 +37,5 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
+	repository.CreateUser(user)
 }

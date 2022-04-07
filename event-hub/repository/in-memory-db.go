@@ -57,6 +57,14 @@ func GetUser(id string) (User, error) {
 	return user, nil
 }
 
+func GetAllUsers() []User {
+	result := make([]User, len(userDatabase))
+	for _, value := range userDatabase {
+		result = append(result, value)
+	}
+	return result
+}
+
 // GetEventsForUser returns a list of events that have an ownerID that match the given user id
 func GetEventsForUser(userID string) []Event {
 	result := make([]Event, 0)
@@ -69,9 +77,11 @@ func GetEventsForUser(userID string) []Event {
 }
 
 func CreateUser(user User) {
-	userDatabase[string(len(userDatabase))] = user
+	user.ID = string(len(userDatabase))
+	userDatabase[user.ID] = user
 }
 
 func CreateEvent(event Event) {
-	eventDatabase[string(len(eventDatabase))] = event
+	event.ID = string(len(eventDatabase))
+	eventDatabase[event.ID] = event
 }

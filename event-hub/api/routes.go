@@ -9,6 +9,7 @@ import (
 func Configure() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/users/{userID}", getUser).Methods("GET")
+	router.HandleFunc("/users", getAllUsers).Methods("GET")
 	router.HandleFunc("/users", createUser).Methods("POST")
 	router.HandleFunc("/users/{userID}/events", getEventsForUser).Methods("GET")
 	return router
