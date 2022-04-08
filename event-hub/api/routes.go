@@ -12,6 +12,7 @@ func Configure() *mux.Router {
 	router.HandleFunc("/users", getAllUsers).Methods("GET")
 	router.HandleFunc("/users", createUser).Methods("POST")
 	router.HandleFunc("/users/{userID}/events", getEventsForUser).Methods("GET")
+	router.HandleFunc("/users/{userID}/events", createEventForUser).Methods("POST")
 	return router
 }
 
