@@ -52,4 +52,5 @@ func createEventForUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	service.CreateEventForUser(userID, event)
+	respondWithJSON(w, http.StatusCreated, "Event created")
 }
