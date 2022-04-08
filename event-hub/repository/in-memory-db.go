@@ -2,6 +2,7 @@ package repository
 
 import (
 	"github.com/pkg/errors"
+	"strconv"
 )
 
 var userDatabase = make(map[string]User)
@@ -83,6 +84,9 @@ func CreateUser(user User) {
 }
 
 func CreateEvent(event Event) {
-	event.ID = string(len(eventDatabase))
+	numberOfEvents := len(eventDatabase)
+	// ID is incrementing sequence. As the ID sequence is 0 based,
+	// the new ID will be the number of items in the existing map
+	event.ID = strconv.Itoa(numberOfEvents)
 	eventDatabase[event.ID] = event
 }

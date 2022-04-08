@@ -18,6 +18,7 @@ func CreateEventForUser(userID string, input repository.Event) error {
 		}
 	}
 
+	input.OwnerID = userID
 	repository.CreateEvent(input)
 	return nil
 }

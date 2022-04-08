@@ -40,3 +40,16 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	}
 	repository.CreateUser(user)
 }
+
+func createEventForUser(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	userID, _ := params["userID"]
+	var event repository.Event
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&event); err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		return
+	}
+
+	service.CreateEventForUser(userID, event)
+}
